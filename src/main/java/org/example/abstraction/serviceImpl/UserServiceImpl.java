@@ -6,6 +6,9 @@ import org.example.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -26,5 +29,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Long addUser(AddUserDto addUserDto) {
 		return userRepo.save(addUserDto.toDbEntity(addUserDto)).getId();
+	}
+
+	public List<String> showKeywordPreference(Long id){
+		return userRepo.showKeywordPreferences(id);
+	}
+
+	public List<String> showKitchenPreference(Long id){
+		return userRepo.showKitchenPreferences(id);
+	}
+
+	public List<String> showVisitedRestaraunts(Long id) {
+		return userRepo.showVisitedRestaraunts(id);
 	}
 }

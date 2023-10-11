@@ -2,6 +2,8 @@ package org.example.abstraction.service;
 
 import org.example.repository.User;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 public interface UserService {
@@ -10,6 +12,12 @@ public interface UserService {
 	Long addUser(AddUserDto addUserDto);
 
 	UserDto signIn(SignInDto dto);
+
+	List<String> showKeywordPreference(Long id);
+
+	List<String> showKitchenPreference(Long id);
+
+	List<String> showVisitedRestaraunts(Long id);
 
 	record SignInDto(
 			String login,

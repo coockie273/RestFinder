@@ -1,22 +1,34 @@
 package org.example.repository;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class KeywordUser {
+public class UserKeywordPreference {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private Long user_id;
 
-    public KeywordUser(){}
+    public UserKeywordPreference(){}
 
-    public KeywordUser(Long user_id, Long keyword_id) {
+    public UserKeywordPreference(Long id, Long user_id, Long keyword_id) {
+        this.id = id;
         this.user_id = user_id;
         this.keyword_id = keyword_id;
     }
 
-    @Id
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     private Long keyword_id;
 
     public Long getUser_id() {
