@@ -11,17 +11,29 @@ import java.util.List;
 public interface RestarauntRepo extends JpaRepository<Restaraunt,Long> {
     Restaraunt findByName(String name);
 
-    @Query("SELECT r.id, r.name, r.coordinate_x, r.coordinate_y " +
-            "FROM Restaraunt r " +
-            "LEFT JOIN RestarauntKeyword rk " +
-            "ON r.id = rk.restaraunt_id " +
-            "LEFT JOIN Keyword k " +
-            "ON k.id = rk.keyword_id " +
-            "LEFT JOIN RestarauntKitchen rkt " +
-            "ON r.id = rkt.restaraunt_id " +
-            "LEFT JOIN Kitchen kt " +
-            "ON kt.id = rkt.kitchen_id " +
-            // ":criteria" +
-            "GROUP BY r.id ")
-    List<RestarauntService.RestarauntDto> getRestaraunts(@Param("critria") String criteria);
+    @Query("SELECT r_name, x, y FROM RestarauntFilter " +
+            "WHERE x > :conditionX1 AND x < :conditionX2 AND y > :conditionY1 AND y < :conditionY2 " +
+            "GROUP BY r_id")
+    List<Object> getRestarauntsForLocation(@Param("conditionX1") String conditionX1,
+                                               @Param("conditionX2") String conditionX2,
+                                               @Param("conditionY1") String conditionY1,
+                                               @Param("conditionY2") String conditionY2);
+
+    @Query("SELECT r_name, x, y FROM RestarauntFilter " +
+            "WHERE k_name = :conditionKeyword " +
+            "GROUP BY r_id")
+    List<Object> getRestarauntsForKeyword(@Param("conditionKeyword") String conditionKeyword);
+
+    @Query("SELECT r_name, x, y FROM RestarauntFilter " +
+            "WHERE kt_name = :conditionKitchen " +
+            "GROUP BY r_id")
+    List<Object> getRestarauntsForKitchen(@Param("conditionKitchen") String conditionKitchen);
+
+
+
+
+
+
+
+
 }

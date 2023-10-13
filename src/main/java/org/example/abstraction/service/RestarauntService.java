@@ -10,7 +10,14 @@ public interface RestarauntService {
     Restaraunt getByName(String Name);
     RestarauntDto getById();
 
-    List<RestarauntDto> getRestaraunts(String criteria);
+    List<Object> getRestarauntsForLocation(String criteriaX1,
+                                               String criteriaX2,
+                                               String criteriaY1,
+                                               String criteriaY2);
+
+    List<Object> getRestarauntsForKitchen(String criteria);
+    List<Object> getRestarauntsForKeyword(String criteria);
+
 
     record RestarauntDto(
             Long id,

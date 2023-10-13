@@ -1,6 +1,6 @@
 package org.example.abstraction.serviceImpl;
 
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.*;
 import org.example.abstraction.service.KeywordService;
 import org.example.abstraction.service.RestarauntService;
 import org.example.abstraction.service.UserService;
@@ -31,8 +31,23 @@ public class RestarauntServiceImpl implements RestarauntService {
     }
 
     @Override
-    public List<RestarauntDto> getRestaraunts(String criteria) {
-        return restarauntRepo.getRestaraunts(criteria);
+    public List<Object> getRestarauntsForLocation(String criteriaX1,
+                                               String criteriaX2,
+                                               String criteriaY1,
+                                               String criteriaY2) {
+        return restarauntRepo.getRestarauntsForLocation(criteriaX1,
+                                                        criteriaX2,
+                                                        criteriaY1,
+                                                        criteriaY2);
+
+    }
+    @Override
+    public List<Object> getRestarauntsForKitchen(String criteria) {
+        return restarauntRepo.getRestarauntsForKitchen(criteria);
+    }
+    @Override
+    public List<Object> getRestarauntsForKeyword(String criteria) {
+        return restarauntRepo.getRestarauntsForKeyword(criteria);
     }
 
 
