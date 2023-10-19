@@ -24,6 +24,7 @@ public interface UserService {
 	){}
 
 	record AddUserDto(
+			Long id,
 			String first_name,
 			String second_name,
 
@@ -33,7 +34,7 @@ public interface UserService {
 	){
 		public static User toDbEntity(AddUserDto addUserDto){
 			return new User(
-					null,
+					addUserDto.id(),
 					addUserDto.first_name(),
 					addUserDto.second_name(),
 					addUserDto.login(),
